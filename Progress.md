@@ -9,7 +9,7 @@
 - ✅ Created the User Roles and Permissions table (Citizen, Administrator, Response Team).
 - ✅ Designed the System Workflow diagram (14 steps).
 - ✅ Created this GitHub repository with README.md and Progress.md.
-- ⏳ Registering for the AI service and email service accounts.
+- ✅ Registered for the AI service (Google Gemini) and email service (Brevo).
 
 **Challenges:**
 - Understanding the full workflow and the responsibilities of each role.

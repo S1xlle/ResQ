@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>ResQ – User Roles and Permissions</title>
+<style>
+@page{size:A4 landscape;margin:14mm}
+body{font-family:"Segoe UI",Arial,sans-serif;color:#1d2433;font-size:10.5pt}
+h1{font-size:18pt;color:#0f1b33;margin:0}
+.sub{color:#b0213f;font-weight:600;margin:2px 0 12px}
+h2{font-size:13pt;color:#0f1b33;border-bottom:2px solid #b0213f;padding-bottom:3px;margin:14px 0 6px}
+table{border-collapse:collapse;width:100%}
+td,th{border:1px solid #d3d9e6;padding:5px 8px;text-align:left;vertical-align:top}
+th{background:#0f1b33;color:#fff}
+td.c{text-align:center;font-weight:700}
+.y{color:#1a8a4a}.n{color:#c0392b}
+tr:nth-child(even) td{background:#f6f8fc}
+</style></head><body>
+<h1>ResQ – User Roles and Permissions</h1>
+<div class="sub">AI-Powered Emergency Assistance &amp; Community Response Platform</div>
+
+<h2>1. Roles</h2>
+<table>
+<tr><th style="width:18%">Role</th><th>Description</th><th style="width:40%">Main Responsibilities</th></tr>
+<tr><td><b>Citizen</b></td><td>A community member who reports problems such as road damage, flooding or electrical hazards.</td><td>Submit incidents with photos and location, track their own reports, receive notifications.</td></tr>
+<tr><td><b>Administrator / Dispatcher</b></td><td>The person who manages the platform and coordinates responses.</td><td>Review incidents and AI analysis, approve or reject, set priority, assign response teams, manage categories, teams and users, view dashboard, reports and audit logs.</td></tr>
+<tr><td><b>Response Team Member</b></td><td>A member of a department team (e.g. Road Maintenance) that fixes incidents.</td><td>View assigned incidents, acknowledge, update progress, upload resolution photos, mark completed.</td></tr>
+</table>
+
+<h2>2. Permissions Matrix</h2>
+<table>
+<tr><th>Feature</th><th style="width:13%">Citizen</th><th style="width:13%">Admin</th><th style="width:13%">Response Team</th></tr>
+<tr><td>Register, log in, manage own profile</td><td class="c y">✔</td><td class="c y">✔</td><td class="c y">✔</td></tr>
+<tr><td>Submit a new incident (photos + map location)</td><td class="c y">✔</td><td class="c n">✘</td><td class="c n">✘</td></tr>
+<tr><td>View / edit / cancel own incidents (while still New)</td><td class="c y">✔</td><td class="c n">✘</td><td class="c n">✘</td></tr>
+<tr><td>Track incident progress and resolution updates</td><td class="c y">✔ own</td><td class="c y">✔ all</td><td class="c y">✔ assigned</td></tr>
+<tr><td>Receive notifications and emails</td><td class="c y">✔</td><td class="c y">✔</td><td class="c y">✔</td></tr>
+<tr><td>View all incidents</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>View AI analysis (category, priority, summary, department)</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>Approve / reject incidents, change priority (override AI)</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>Review possible duplicate reports</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>Assign response teams to incidents</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>Manage categories, teams, members, users (activate / deactivate)</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>View incident map</td><td class="c y">✔ pick location</td><td class="c y">✔ all incidents</td><td class="c y">✔ assigned</td></tr>
+<tr><td>Acknowledge assignment, update progress, add notes</td><td class="c n">✘</td><td class="c n">✘</td><td class="c y">✔</td></tr>
+<tr><td>Upload resolution photos, mark as completed</td><td class="c n">✘</td><td class="c n">✘</td><td class="c y">✔</td></tr>
+<tr><td>Close incident after verifying resolution</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>Dashboard, charts, reports and export</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>View audit logs (system activity)</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+</table>
+<p style="font-size:9.5pt;color:#586079">Enforced in the API with ASP.NET Core Identity roles and <code>[Authorize(Roles = "...")]</code>. A user without permission receives <b>403 Forbidden</b>.</p>
+</body></html>

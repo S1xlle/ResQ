@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>ResQ – Project Proposal</title>
+<style>
+@page{size:A4;margin:18mm 17mm}
+body{font-family:"Segoe UI",Arial,sans-serif;color:#1d2433;font-size:11pt;line-height:1.55}
+h1{font-size:20pt;color:#0f1b33;margin:0}
+.sub{color:#b0213f;font-weight:600;margin:2px 0 10px}
+h2{font-size:13pt;color:#0f1b33;border-bottom:2px solid #b0213f;padding-bottom:3px;margin:16px 0 6px}
+table{border-collapse:collapse;width:100%;font-size:10pt}td,th{border:1px solid #d3d9e6;padding:5px 8px;text-align:left;vertical-align:top}th{background:#0f1b33;color:#fff}
+.meta td:first-child{width:32%;font-weight:600;background:#f3f5fa}
+ul{margin:4px 0;padding-left:20px}
+</style></head><body>
+<h1>ResQ</h1>
+<div class="sub">AI-Powered Emergency Assistance &amp; Community Response Platform — Project Proposal</div>
+<table class="meta">
+<tr><td>Student</td><td>Shaikha</td></tr>
+<tr><td>Project Type</td><td>Real-World Startup-Style Software Product (Advanced)</td></tr>
+<tr><td>Duration</td><td>21 Days (3 Weeks)</td></tr>
+<tr><td>Architecture</td><td>API-First Layered Architecture (ASP.NET Core Web API + MVC frontend)</td></tr>
+</table>
+
+<h2>1. Problem Statement</h2>
+<p>In many communities, reporting infrastructure problems and public safety concerns is slow and disorganized:</p>
+<ul>
+<li>Citizens do not know where to report community problems.</li>
+<li>Administrators receive reports through different, disconnected channels.</li>
+<li>Duplicate reports about the same problem create unnecessary work.</li>
+<li>Choosing the right response team for each incident is difficult.</li>
+<li>Citizens cannot see whether their reports are being handled.</li>
+<li>Administrators lack centralized analytics and reporting tools.</li>
+</ul>
+
+<h2>2. Proposed Solution</h2>
+<p>ResQ is a centralized, API-driven platform where citizens report incidents with a description, photographs and a map location.
+An AI service analyzes each report to suggest a category, priority level, short summary and responsible department, and detects possible duplicates.
+Administrators review the AI suggestions, approve incidents and assign response teams, who update progress until the incident is resolved.
+Everyone is kept informed through real-time notifications and emails, and administrators monitor everything through a dashboard with charts and reports.</p>
+
+<h2>3. Project Objectives</h2>
+<ul>
+<li>Build RESTful Web APIs for all modules using ASP.NET Core and C#.</li>
+<li>Store data in SQL Server using Entity Framework Core.</li>
+<li>Secure the system with ASP.NET Core Identity, JWT and role-based authorization.</li>
+<li>Integrate an AI service for classification, priority, summarization, department recommendation and duplicate detection.</li>
+<li>Integrate interactive maps (Leaflet + OpenStreetMap) and an email delivery service.</li>
+<li>Provide real-time notifications using SignalR.</li>
+<li>Implement incident assignment and tracking workflows.</li>
+<li>Provide an administrator dashboard, analytics and exportable reports.</li>
+<li>Deliver a professional, responsive user interface.</li>
+</ul>
+
+<h2>4. Project Scope</h2>
+<table><tr><th>In Scope</th><th>Out of Scope</th></tr>
+<tr><td><ul>
+<li>Registration, login, profiles for 3 roles</li>
+<li>Incident reporting with photos and map location</li>
+<li>AI analysis with admin review and override</li>
+<li>Response team management and assignments</li>
+<li>Interactive incident map</li>
+<li>SignalR and email notifications</li>
+<li>Dashboard, charts, reports (CSV export)</li>
+<li>Audit logs</li>
+</ul></td><td><ul>
+<li>Real emergency operations (educational prototype only)</li>
+<li>Native mobile apps</li>
+<li>Payments</li>
+<li>Fully automatic decisions without admin review</li>
+</ul></td></tr></table>
+
+<h2>5. User Roles (summary)</h2>
+<table><tr><th>Role</th><th>Main Responsibilities</th></tr>
+<tr><td>Citizen</td><td>Register, submit incidents with photos and location, track progress, receive notifications.</td></tr>
+<tr><td>Administrator / Dispatcher</td><td>Review incidents and AI analysis, approve/reject, set priority, assign teams, manage categories and teams, view dashboard, reports and logs.</td></tr>
+<tr><td>Response Team</td><td>View assigned incidents, acknowledge, update progress, upload resolution photos, mark completed.</td></tr></table>
+
+<h2>6. Technologies</h2>
+<table>
+<tr><td><b>Backend</b></td><td>ASP.NET Core Web API, C#, EF Core, LINQ, Dependency Injection, Async/Await, JWT, ASP.NET Core Identity</td></tr>
+<tr><td><b>Database</b></td><td>Microsoft SQL Server, SSMS, EF Core Migrations (database: ResQDB)</td></tr>
+<tr><td><b>Frontend</b></td><td>ASP.NET Core MVC, HTML5, CSS3, Bootstrap 5, JavaScript, Chart.js</td></tr>
+<tr><td><b>Real-time</b></td><td>ASP.NET Core SignalR</td></tr>
+<tr><td><b>Testing</b></td><td>Swagger / OpenAPI, Postman, xUnit</td></tr>
+<tr><td><b>Tools</b></td><td>Visual Studio, Git &amp; GitHub, draw.io</td></tr>
+</table>
+
+<h2>7. External APIs</h2>
+<table><tr><th>Service</th><th>Provider</th><th>Purpose</th></tr>
+<tr><td>AI API (mandatory)</td><td>OpenAI / Google Gemini</td><td>Classification, priority, summary, department, duplicate similarity</td></tr>
+<tr><td>Maps &amp; Geocoding</td><td>Leaflet + OpenStreetMap + Nominatim</td><td>Show incidents on a map, convert addresses to coordinates</td></tr>
+<tr><td>Email Delivery</td><td>Brevo</td><td>Registration, submission, status, assignment and resolution emails</td></tr>
+</table>
+<p>All API keys are stored in User Secrets / environment variables and never committed to GitHub.</p>
+
+<h2>8. Expected Outcome</h2>
+<p>A working, tested and documented platform demonstrating the full workflow:
+incident submission → AI analysis → administrator review → team assignment → resolution → notifications and analytics.</p>
+</body></html>

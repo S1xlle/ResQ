@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>ResQ – User Roles (Arabic + English)</title>
+<style>
+@page{size:A4 landscape;margin:12mm}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;color:#1d2433;font-size:10pt}
+h1{font-size:18pt;color:#0f1b33;margin:0}
+.sub{color:#b0213f;font-weight:600;margin:2px 0 10px}
+h2{font-size:13pt;color:#0f1b33;border-bottom:2px solid #b0213f;padding-bottom:3px;margin:12px 0 6px;display:flex;justify-content:space-between}
+table{border-collapse:collapse;width:100%}
+td,th{border:1px solid #d3d9e6;padding:5px 7px;vertical-align:top}
+th{background:#0f1b33;color:#fff;text-align:left}
+.ar{direction:rtl;text-align:right}
+th.ar{text-align:right}
+td.c{text-align:center;font-weight:700;white-space:nowrap}
+.y{color:#1a8a4a}.n{color:#c0392b}
+tr:nth-child(even) td{background:#f6f8fc}
+.page{page-break-before:always}
+</style></head><body>
+<h1>ResQ – User Roles and Permissions</h1>
+<div class="sub">الأدوار والصلاحيات (English + العربي)</div>
+
+<h2><span>1. Roles</span><span class="ar">١. الأدوار</span></h2>
+<table>
+<tr><th style="width:12%">Role</th><th>Description &amp; Responsibilities</th><th class="ar">الوصف والمسؤوليات</th><th class="ar" style="width:10%">الدور</th></tr>
+<tr><td><b>Citizen</b></td><td>A community member who reports problems (road damage, flooding, electrical hazards...). Submits incidents with photos and location, tracks own reports, receives notifications.</td>
+<td class="ar">أي شخص من الحي يبلّغ عن مشكلة (حفرة، فيضان، خطر كهربائي...). يرسل البلاغ بصور وموقع، ويتابع بلاغاته، ويوصله إشعار.</td><td class="ar"><b>المواطن</b></td></tr>
+<tr><td><b>Administrator / Dispatcher</b></td><td>Manages the platform and coordinates responses. Reviews incidents and AI analysis, approves or rejects, sets priority, assigns teams, manages categories, teams and users, views dashboard, reports and audit logs.</td>
+<td class="ar">يدير المنصة وينظم الاستجابة. يراجع البلاغات وتحليل الذكاء الاصطناعي، ويوافق أو يرفض، ويحدد الأهمية، ويرسل الفريق، ويدير الأقسام والفرق والمستخدمين، ويشوف لوحة التحكم والتقارير والسجلات.</td><td class="ar"><b>المدير</b></td></tr>
+<tr><td><b>Response Team Member</b></td><td>Member of a department team (e.g. Road Maintenance) that fixes incidents. Views assigned incidents, acknowledges, updates progress, uploads resolution photos, marks completed.</td>
+<td class="ar">عضو في فريق قسم (مثل صيانة الطرق) يصلح المشاكل. يشوف المهام اللي انعطت له، ويأكد استلامها، ويحدّث التقدم، ويرفع صور الإصلاح، ويعلن إنها خلصت.</td><td class="ar"><b>فريق الإصلاح</b></td></tr>
+</table>
+
+<div class="page"></div>
+<h2><span>2. Permissions Matrix</span><span class="ar">٢. جدول الصلاحيات</span></h2>
+<table>
+<tr><th>Feature</th><th class="ar">الميزة</th><th style="width:9%">Citizen<br>المواطن</th><th style="width:9%">Admin<br>المدير</th><th style="width:10%">Team<br>الفريق</th></tr>
+<tr><td>Register, log in, manage own profile</td><td class="ar">التسجيل والدخول وتعديل الملف الشخصي</td><td class="c y">✔</td><td class="c y">✔</td><td class="c y">✔</td></tr>
+<tr><td>Submit a new incident (photos + map location)</td><td class="ar">إرسال بلاغ جديد (صور + موقع)</td><td class="c y">✔</td><td class="c n">✘</td><td class="c n">✘</td></tr>
+<tr><td>View / edit / cancel own incidents (while New)</td><td class="ar">عرض وتعديل وإلغاء بلاغاته (قبل المراجعة)</td><td class="c y">✔</td><td class="c n">✘</td><td class="c n">✘</td></tr>
+<tr><td>Track incident progress</td><td class="ar">متابعة تقدم البلاغ</td><td class="c y">✔ own<br>حقه</td><td class="c y">✔ all<br>الكل</td><td class="c y">✔ assigned<br>المعيّن له</td></tr>
+<tr><td>Receive notifications and emails</td><td class="ar">استلام الإشعارات والإيميلات</td><td class="c y">✔</td><td class="c y">✔</td><td class="c y">✔</td></tr>
+<tr><td>View all incidents</td><td class="ar">عرض كل البلاغات</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>View AI analysis</td><td class="ar">عرض تحليل الذكاء الاصطناعي</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>Approve / reject, change priority (override AI)</td><td class="ar">الموافقة أو الرفض وتغيير الأهمية (تعديل اقتراح AI)</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>Review possible duplicate reports</td><td class="ar">مراجعة البلاغات المكررة</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>Assign response teams</td><td class="ar">تعيين فريق للبلاغ</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>Manage categories, teams, members, users</td><td class="ar">إدارة الأقسام والفرق والأعضاء والمستخدمين</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>Incident map</td><td class="ar">خريطة البلاغات</td><td class="c y">✔ pick location<br>يحدد الموقع</td><td class="c y">✔ all<br>الكل</td><td class="c y">✔ assigned<br>المعيّن له</td></tr>
+<tr><td>Acknowledge, update progress, add notes</td><td class="ar">تأكيد الاستلام وتحديث التقدم وإضافة ملاحظات</td><td class="c n">✘</td><td class="c n">✘</td><td class="c y">✔</td></tr>
+<tr><td>Upload resolution photos, mark completed</td><td class="ar">رفع صور الإصلاح وإعلان الانتهاء</td><td class="c n">✘</td><td class="c n">✘</td><td class="c y">✔</td></tr>
+<tr><td>Close incident after verification</td><td class="ar">إغلاق البلاغ بعد التأكد</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>Dashboard, charts, reports, export</td><td class="ar">لوحة التحكم والرسوم والتقارير والتحميل</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+<tr><td>View audit logs</td><td class="ar">عرض سجل العمليات</td><td class="c n">✘</td><td class="c y">✔</td><td class="c n">✘</td></tr>
+</table>
+<p style="font-size:9.5pt;color:#586079">Enforced with Identity roles and <code>[Authorize(Roles = "...")]</code>; without permission → <b>403 Forbidden</b>.
+<span class="ar" style="display:block">الصلاحيات تتطبق في الـ API بالأدوار، واللي ما عنده صلاحية يطلع له <b>403 Forbidden</b> (ممنوع).</span></p>
+</body></html>

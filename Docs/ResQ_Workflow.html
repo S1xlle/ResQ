@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>ResQ – System Workflow</title>
+<style>
+@page{size:A4;margin:10mm}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;color:#1d2433;margin:0}
+h1{font-size:17pt;color:#0f1b33;margin:0;text-align:center}
+.sub{color:#b0213f;font-weight:600;text-align:center;margin:2px 0 6px;font-size:10pt}
+.legend{display:flex;justify-content:center;gap:14px;font-size:8.5pt;margin-bottom:6px}
+.legend span{display:flex;align-items:center;gap:5px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.flow{display:flex;flex-direction:column;align-items:center}
+.step{width:150mm;border-radius:9px;padding:4px 10px;display:flex;gap:10px;align-items:center;border:1.5px solid}
+.num{width:22px;height:22px;border-radius:50%;color:#fff;font-weight:800;font-size:9pt;display:grid;place-items:center;flex-shrink:0}
+.txt{flex:1}
+.en{font-weight:700;font-size:9.6pt}
+.ar{direction:rtl;text-align:right;font-size:9pt;color:#444}
+.who{font-size:7.5pt;font-weight:700;padding:1px 6px;border-radius:999px;color:#fff;white-space:nowrap}
+.arrow{font-size:11pt;line-height:12px;color:#8a93ab}
+.c{background:#eaf3ff;border-color:#4a90e2}.c .num,.c .who,.lc{background:#4a90e2}
+.s{background:#f1f1f6;border-color:#7a7f99}.s .num,.s .who,.ls{background:#7a7f99}
+.a{background:#fff0f3;border-color:#d1495b}.a .num,.a .who,.la{background:#d1495b}
+.t{background:#eafaf1;border-color:#2a9d6f}.t .num,.t .who,.lt{background:#2a9d6f}
+.ai{background:#f6efff;border-color:#8a5cd6}.ai .num,.ai .who,.lai{background:#8a5cd6}
+.dec{width:150mm;display:flex;justify-content:space-between;font-size:8.3pt;margin:1px 0}
+.dec div{border:1.5px dashed #d1495b;border-radius:8px;padding:3px 8px;background:#fff}
+</style></head><body>
+<h1>ResQ – System Workflow</h1>
+<div class="sub">AI-Powered Emergency Assistance &amp; Community Response Platform · مسار النظام</div>
+<div class="legend">
+<span><i class="lc"></i>Citizen</span><span><i class="ls"></i>System</span><span><i class="lai"></i>AI</span><span><i class="la"></i>Admin</span><span><i class="lt"></i>Response Team</span>
+</div>
+<div class="flow">
+<div class="step c"><div class="num">1</div><div class="txt"><div class="en">Citizen registers and logs in</div><div class="ar">المواطن يسجّل ويدخل الموقع</div></div><span class="who">Citizen</span></div><div class="arrow">▼</div>
+<div class="step c"><div class="num">2</div><div class="txt"><div class="en">Submits incident: description, photo, map location</div><div class="ar">يرسل بلاغ: وصف المشكلة + صورة + الموقع على الخريطة</div></div><span class="who">Citizen</span></div><div class="arrow">▼</div>
+<div class="step s"><div class="num">3</div><div class="txt"><div class="en">API validates the request and saves the incident (reference no.)</div><div class="ar">النظام يتأكد إن البيانات صحيحة ويحفظ البلاغ برقم مرجع</div></div><span class="who">System</span></div><div class="arrow">▼</div>
+<div class="step ai"><div class="num">4</div><div class="txt"><div class="en">AI analyzes: category, priority, summary, department, duplicates</div><div class="ar">الذكاء الاصطناعي يحلل: نوع المشكلة، أهميتها، ملخص، القسم، وهل هي مكررة</div></div><span class="who">AI</span></div><div class="arrow">▼</div>
+<div class="step s"><div class="num">5</div><div class="txt"><div class="en">System stores the AI analysis</div><div class="ar">النظام يحفظ نتيجة التحليل</div></div><span class="who">System</span></div><div class="arrow">▼</div>
+<div class="step a"><div class="num">6</div><div class="txt"><div class="en">Admin receives a real-time notification (SignalR)</div><div class="ar">المدير يوصله إشعار فوري بالبلاغ الجديد</div></div><span class="who">Admin</span></div><div class="arrow">▼</div>
+<div class="step a"><div class="num">7</div><div class="txt"><div class="en">Admin reviews the incident and AI recommendations</div><div class="ar">المدير يراجع البلاغ واقتراحات الذكاء الاصطناعي</div></div><span class="who">Admin</span></div>
+<div class="dec"><div>✘ Rejected → citizen notified · يرفض ← المواطن يوصله إشعار</div><div>✔ Approved · يوافق ▼</div></div>
+<div class="step a"><div class="num">8</div><div class="txt"><div class="en">Admin approves and assigns a response team</div><div class="ar">المدير يوافق ويعيّن فريق إصلاح مناسب</div></div><span class="who">Admin</span></div><div class="arrow">▼</div>
+<div class="step t"><div class="num">9</div><div class="txt"><div class="en">Response team receives assignment notification</div><div class="ar">الفريق يوصله إشعار بالمهمة الجديدة</div></div><span class="who">Team</span></div><div class="arrow">▼</div>
+<div class="step t"><div class="num">10</div><div class="txt"><div class="en">Team updates incident progress</div><div class="ar">الفريق يحدّث تقدم الشغل</div></div><span class="who">Team</span></div><div class="arrow">▼</div>
+<div class="step c"><div class="num">11</div><div class="txt"><div class="en">Citizen receives status notifications + email</div><div class="ar">المواطن يوصله إشعار وإيميل بكل تحديث</div></div><span class="who">Citizen</span></div><div class="arrow">▼</div>
+<div class="step t"><div class="num">12</div><div class="txt"><div class="en">Team uploads resolution photos and submits completion</div><div class="ar">الفريق يرفع صور الإصلاح ويعلن إن الشغل خلص</div></div><span class="who">Team</span></div><div class="arrow">▼</div>
+<div class="step a"><div class="num">13</div><div class="txt"><div class="en">Admin verifies the resolution and closes the incident</div><div class="ar">المدير يتأكد إن المشكلة انحلت ويقفل البلاغ</div></div><span class="who">Admin</span></div><div class="arrow">▼</div>
+<div class="step s"><div class="num">14</div><div class="txt"><div class="en">Dashboard statistics and reports are updated</div><div class="ar">لوحة التحكم والتقارير تتحدث تلقائياً</div></div><span class="who">System</span></div>
+</div>
+</body></html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>ResQ – Proposal (Arabic + English)</title>
+<style>
+@page{size:A4;margin:15mm 15mm}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;color:#1d2433;font-size:10.8pt;line-height:1.55}
+h1{font-size:20pt;color:#0f1b33;margin:0}
+.sub{color:#b0213f;font-weight:600;margin:2px 0 10px}
+h2{font-size:13pt;color:#0f1b33;border-bottom:2px solid #b0213f;padding-bottom:3px;margin:16px 0 6px;display:flex;justify-content:space-between}
+h2 .ar{font-size:13pt}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:6px 0}
+.en{border-left:3px solid #1d2f5a;padding:4px 10px;background:#f6f8fc;border-radius:6px}
+.ar{direction:rtl;text-align:right;border-right:3px solid #b0213f;padding:4px 10px;background:#fff6f8;border-radius:6px}
+h2 .ar{border:0;background:none;padding:0}
+ul{margin:3px 0;padding-left:18px}.ar ul{padding-left:0;padding-right:18px}
+li{margin:2px 0}
+.tag{font-size:8.5pt;font-weight:700;color:#586079;margin-bottom:2px}
+</style></head><body>
+<h1>ResQ</h1>
+<div class="sub">AI-Powered Emergency Assistance &amp; Community Response Platform — Project Proposal (English + العربي)</div>
+<div class="pair">
+ <div class="en"><div class="tag">ENGLISH</div><b>Project type:</b> Real-world startup-style software product (Advanced)<br><b>Duration:</b> 21 days<br><b>Architecture:</b> API-first layered architecture</div>
+ <div class="ar"><div class="tag">العربي</div><b>نوع المشروع:</b> منتج برمجي حقيقي مثل الشركات الناشئة (مستوى متقدم)<br><b>المدة:</b> 21 يوم<br><b>الهيكل:</b> نظام مبني على الـ API ومقسم لطبقات</div>
+</div>
+
+<h2><span>1. Problem Statement</span><span class="ar">١. المشكلة</span></h2>
+<div class="pair">
+ <div class="en">In many communities, reporting infrastructure problems and public safety concerns is slow and disorganized:
+ <ul><li>Citizens do not know where to report community problems.</li><li>Administrators receive reports through different, disconnected channels.</li><li>Duplicate reports about the same problem create unnecessary work.</li><li>Choosing the right response team for each incident is difficult.</li><li>Citizens cannot see whether their reports are being handled.</li><li>Administrators lack centralized analytics and reporting tools.</li></ul></div>
+ <div class="ar">في كثير من المناطق، الإبلاغ عن مشاكل البنية التحتية والسلامة العامة بطيء وغير منظم:
+ <ul><li>الناس ما يعرفون وين يبلّغون عن مشاكل الحي.</li><li>البلاغات توصل للمسؤولين من أماكن مختلفة ومتفرقة.</li><li>تتكرر البلاغات عن نفس المشكلة، وهذا شغل زايد.</li><li>صعب اختيار الفريق المناسب لكل مشكلة.</li><li>المواطن ما يعرف إذا بلاغه قاعد يتعالج أو لا.</li><li>المسؤولين ما عندهم مكان واحد فيه إحصائيات وتقارير.</li></ul></div>
+</div>
+
+<h2><span>2. Proposed Solution</span><span class="ar">٢. الحل المقترح</span></h2>
+<div class="pair">
+ <div class="en">ResQ is one centralized platform where citizens report incidents with a description, photos and a map location. An AI service analyzes each report and suggests a category, priority, short summary and responsible department, and detects possible duplicates. Administrators review the AI suggestions, approve incidents and assign response teams, who update progress until the incident is resolved. Everyone is informed through real-time notifications and emails, and administrators monitor everything through a dashboard with charts and reports.</div>
+ <div class="ar">ResQ منصة واحدة، المواطن يبلّغ فيها عن المشكلة بوصف وصور وموقع على الخريطة. الذكاء الاصطناعي يحلل كل بلاغ ويقترح: نوع المشكلة، ودرجة الأهمية، وملخص قصير، والقسم المسؤول، ويكتشف البلاغات المكررة. المدير يراجع اقتراحات الذكاء الاصطناعي، ويوافق على البلاغ، ويرسل فريق. الفريق يحدّث التقدم لين تتصلح المشكلة. والكل يوصله إشعار فوري وإيميل، والمدير يتابع كل شي من لوحة تحكم فيها رسوم بيانية وتقارير.</div>
+</div>
+
+<h2><span>3. Project Objectives</span><span class="ar">٣. أهداف المشروع</span></h2>
+<div class="pair">
+ <div class="en"><ul><li>Build RESTful Web APIs using ASP.NET Core and C#.</li><li>Store data in SQL Server using Entity Framework Core.</li><li>Secure the system with Identity, JWT and role-based authorization.</li><li>Integrate AI for classification, priority, summary, department and duplicate detection.</li><li>Integrate interactive maps and an email service.</li><li>Real-time notifications using SignalR.</li><li>Incident assignment and tracking workflow.</li><li>Admin dashboard, analytics and exportable reports.</li><li>A professional, responsive user interface.</li></ul></div>
+ <div class="ar"><ul><li>نبني APIs بـ ASP.NET Core ولغة C#.</li><li>نحفظ البيانات في SQL Server عن طريق Entity Framework Core.</li><li>نحمي النظام بتسجيل الدخول و JWT وصلاحيات حسب الدور.</li><li>نربط الذكاء الاصطناعي: يصنّف، ويحدد الأهمية، ويلخّص، ويقترح القسم، ويكشف التكرار.</li><li>نربط خرائط تفاعلية وخدمة إيميل.</li><li>إشعارات فورية بـ SignalR.</li><li>مسار كامل لتعيين الفرق ومتابعة البلاغ.</li><li>لوحة تحكم للمدير فيها إحصائيات وتقارير قابلة للتحميل.</li><li>واجهة احترافية تشتغل على الجوال والكمبيوتر.</li></ul></div>
+</div>
+
+<h2><span>4. Project Scope</span><span class="ar">٤. نطاق المشروع</span></h2>
+<div class="pair">
+ <div class="en"><b>In scope:</b><ul><li>Registration and login for 3 roles</li><li>Incident reporting with photos and map location</li><li>AI analysis with admin review</li><li>Response teams and assignments</li><li>Incident map</li><li>SignalR and email notifications</li><li>Dashboard, charts, CSV export</li><li>Audit logs</li></ul><b>Out of scope:</b><ul><li>Real emergency operations (educational prototype)</li><li>Native mobile apps, payments</li><li>Automatic decisions without admin review</li></ul></div>
+ <div class="ar"><b>داخل المشروع:</b><ul><li>تسجيل ودخول لـ 3 أدوار</li><li>إرسال بلاغ مع صور وموقع على الخريطة</li><li>تحليل بالذكاء الاصطناعي والمدير يراجعه</li><li>فرق الإصلاح وتعيينها</li><li>خريطة البلاغات</li><li>إشعارات فورية وإيميلات</li><li>لوحة تحكم ورسوم بيانية وتحميل تقرير CSV</li><li>سجل لكل العمليات المهمة</li></ul><b>خارج المشروع:</b><ul><li>الطوارئ الحقيقية (هذا مشروع تعليمي)</li><li>تطبيق جوال، أو دفع فلوس</li><li>قرارات تلقائية بدون مراجعة المدير</li></ul></div>
+</div>
+
+<h2><span>5. User Roles</span><span class="ar">٥. الأدوار</span></h2>
+<div class="pair">
+ <div class="en"><ul><li><b>Citizen:</b> registers, submits incidents with photos and location, tracks progress, receives notifications.</li><li><b>Administrator:</b> reviews incidents and AI analysis, approves or rejects, sets priority, assigns teams, manages categories and teams, views dashboard and logs.</li><li><b>Response Team:</b> views assigned incidents, updates progress, uploads resolution photos, marks completed.</li></ul></div>
+ <div class="ar"><ul><li><b>المواطن:</b> يسجّل، ويرسل بلاغ بصور وموقع، ويتابع بلاغه، ويوصله إشعار.</li><li><b>المدير:</b> يراجع البلاغات وتحليل الذكاء الاصطناعي، ويوافق أو يرفض، ويحدد الأهمية، ويرسل الفريق، ويدير الأقسام والفرق، ويشوف لوحة التحكم والسجلات.</li><li><b>فريق الإصلاح:</b> يشوف المهام اللي تعيّنت له، ويحدّث التقدم، ويرفع صور الإصلاح، ويعلن إن المهمة خلصت.</li></ul></div>
+</div>
+
+<h2><span>6. Technologies</span><span class="ar">٦. التقنيات</span></h2>
+<div class="pair">
+ <div class="en"><ul><li><b>Backend:</b> ASP.NET Core Web API, C#, EF Core, LINQ, JWT, Identity</li><li><b>Database:</b> SQL Server, SSMS, Migrations (ResQDB)</li><li><b>Frontend:</b> MVC, HTML, CSS, Bootstrap 5, JavaScript, Chart.js</li><li><b>Real-time:</b> SignalR</li><li><b>Testing:</b> Swagger, Postman, xUnit</li><li><b>Tools:</b> Visual Studio, GitHub, draw.io</li></ul></div>
+ <div class="ar"><ul><li><b>الخلفية (السيرفر):</b> ASP.NET Core Web API ولغة C# و EF Core و LINQ و JWT و Identity</li><li><b>قاعدة البيانات:</b> SQL Server و SSMS و Migrations (اسمها ResQDB)</li><li><b>الواجهة:</b> MVC و HTML و CSS و Bootstrap 5 و JavaScript و Chart.js للرسوم</li><li><b>الإشعارات الفورية:</b> SignalR</li><li><b>الاختبار:</b> Swagger و Postman و xUnit</li><li><b>الأدوات:</b> Visual Studio و GitHub و draw.io للرسمات</li></ul></div>
+</div>
+
+<h2><span>7. External APIs</span><span class="ar">٧. الخدمات الخارجية</span></h2>
+<div class="pair">
+ <div class="en"><ul><li><b>AI API</b> (OpenAI / Gemini) – mandatory: classification, priority, summary, department, duplicate similarity.</li><li><b>Maps &amp; Geocoding</b> (Leaflet + OpenStreetMap + Nominatim): show incidents on a map, convert addresses to coordinates.</li><li><b>Email</b> (Brevo): registration, submission, status, assignment and resolution emails.</li></ul>All API keys are kept in User Secrets, never on GitHub.</div>
+ <div class="ar"><ul><li><b>الذكاء الاصطناعي</b> (OpenAI أو Gemini) – إلزامي: يصنّف البلاغ، ويحدد أهميته، ويلخصه، ويقترح القسم، ويكشف التكرار.</li><li><b>الخرائط</b> (Leaflet + OpenStreetMap + Nominatim): يعرض البلاغات على الخريطة، ويحوّل العنوان لإحداثيات.</li><li><b>الإيميل</b> (Brevo): إيميلات التسجيل، واستلام البلاغ، وتغيير الحالة، وتعيين الفريق، وحل المشكلة.</li></ul>كل المفاتيح السرية تنحفظ في User Secrets، وأبداً ما تنرفع على GitHub.</div>
+</div>
+
+<h2><span>8. Expected Outcome</span><span class="ar">٨. النتيجة المتوقعة</span></h2>
+<div class="pair">
+ <div class="en">A working, tested and documented platform showing the full workflow: incident submission → AI analysis → admin review → team assignment → resolution → notifications and analytics.</div>
+ <div class="ar">منصة شغالة ومختبرة وموثقة، تعرض المسار كامل: إرسال البلاغ ← تحليل الذكاء الاصطناعي ← مراجعة المدير ← تعيين الفريق ← حل المشكلة ← الإشعارات والإحصائيات.</div>
+</div>
+</body></html>

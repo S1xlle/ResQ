@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>ResQ – Database Tables</title>
+<style>
+@page{size:A4;margin:12mm}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;color:#1d2433;font-size:9.6pt}
+h1{font-size:18pt;color:#0f1b33;margin:0}
+.sub{color:#b0213f;font-weight:600;margin:2px 0 8px}
+h2{font-size:12pt;color:#fff;background:#0f1b33;border-radius:6px;padding:4px 10px;margin:12px 0 4px;display:flex;justify-content:space-between}
+h2 span.ar{direction:rtl}
+p.d{margin:2px 0 4px;color:#444}
+table{border-collapse:collapse;width:100%;page-break-inside:avoid}
+td,th{border:1px solid #d3d9e6;padding:3px 6px;text-align:left;vertical-align:top}
+th{background:#eef2fa}
+td.ar,th.ar{direction:rtl;text-align:right}
+.k{font-weight:800;color:#b0213f}.f{font-weight:800;color:#2a6bc7}
+.box{border:1px solid #d3d9e6;border-radius:8px;padding:6px 10px;background:#fafbfe;margin:6px 0}
+.blk{page-break-inside:avoid}
+</style></head><body>
+<h1>ResQ – Database Design &amp; Table Descriptions</h1>
+<div class="sub">تصميم قاعدة البيانات ووصف الجداول · Database: ResQDB (SQL Server)</div>
+<div class="box">
+<b>Data types · أنواع البيانات:</b> int = whole number رقم صحيح · nvarchar(n) = text up to n characters نص · bit = true/false صح أو غلط · datetime2 = date &amp; time تاريخ ووقت · decimal(9,6) = coordinate إحداثيات ·
+<span class="k">PK</span> = Primary Key المفتاح الأساسي · <span class="f">FK</span> = Foreign Key مفتاح الربط
+</div>
+<div id="out"></div>
+<script>
+const D=[
+['Users (AspNetUsers)','المستخدمين','All user accounts (Identity). Passwords are stored as hashes by ASP.NET Core Identity.','كل حسابات المستخدمين، والباسوورد ينحفظ مشفر.',[
+['Id','nvarchar(450)','PK','Unique user ID','رقم المستخدم'],['FullName','nvarchar(100)','✔','Full name','الاسم الكامل'],['Email','nvarchar(256)','✔ unique','Login email','الإيميل'],['PhoneNumber','nvarchar(20)','','Phone number','رقم الجوال'],['IsActive','bit','✔ default 1','Account active or deactivated','الحساب مفعّل أو موقوف'],['CreatedAt','datetime2','✔','Registration date','تاريخ التسجيل']]],
+['Roles (AspNetRoles)','الأدوار','The three roles: Citizen, Administrator, ResponseTeam.','الأدوار الثلاثة: مواطن، مدير، فريق.',[
+['RoleId','nvarchar(450)','PK','Unique role ID','رقم الدور'],['RoleName','nvarchar(256)','✔ unique','Role name','اسم الدور']]],
+['UserRoles (AspNetUserRoles)','ربط المستخدم بالدور','Junction table: which user has which role (many-to-many).','جدول ربط: كل مستخدم وش دوره (كثير إلى كثير).',[
+['UserId','nvarchar(450)','PK, FK → Users','The user','المستخدم'],['RoleId','nvarchar(450)','PK, FK → Roles','The role','الدور']]],
+['Categories','أنواع المشاكل','Incident categories (Road damage, Electrical hazards, Fire, Flooding, ...).','أنواع البلاغات (حفر، كهرباء، حريق، فيضان...).',[
+['CategoryId','int','PK, identity','Unique ID','الرقم'],['CategoryName','nvarchar(100)','✔ unique','Category name','اسم النوع'],['Description','nvarchar(300)','','Description','الوصف'],['IsActive','bit','✔ default 1','Can be selected or not','مفعّل أو لا']]],
+['Priorities','درجات الأهمية','Low, Medium, High, Critical.','منخفضة، متوسطة، عالية، حرجة.',[
+['PriorityId','int','PK','Unique ID','الرقم'],['PriorityName','nvarchar(20)','✔ unique','Priority name','اسم الأهمية'],['PriorityLevel','int','✔ 1–4','Order (4 = Critical)','الترتيب (4 = حرجة)']]],
+['IncidentStatuses','حالات البلاغ','New, UnderReview, Approved, Rejected, Assigned, InProgress, Resolved, Closed, Cancelled.','جديد، قيد المراجعة، مقبول، مرفوض، معيّن، قيد العمل، محلول، مغلق، ملغي.',[
+['StatusId','int','PK','Unique ID','الرقم'],['StatusName','nvarchar(30)','✔ unique','Status name','اسم الحالة']]],
+['Incidents','البلاغات (الجدول الرئيسي)','Every incident reported by a citizen.','كل بلاغ يرسله المواطن.',[
+['IncidentId','int','PK, identity','Unique ID','الرقم'],['ReferenceNumber','nvarchar(20)','✔ unique','e.g. RQ-2026-000123','رقم المرجع'],['Title','nvarchar(150)','✔','Short title','العنوان'],['Description','nvarchar(2000)','✔','Full description','الوصف'],['CategoryId','int','FK → Categories','Category','النوع'],['PriorityId','int','FK → Priorities (nullable)','Set after review','الأهمية'],['StatusId','int','✔ FK → IncidentStatuses','Current status','الحالة'],['ReportedByUserId','nvarchar(450)','✔ FK → Users','Citizen who reported','المواطن المبلّغ'],['Latitude','decimal(9,6)','✔ −90..90','Map latitude','خط العرض'],['Longitude','decimal(9,6)','✔ −180..180','Map longitude','خط الطول'],['Address','nvarchar(300)','','Readable address','العنوان المكتوب'],['CreatedAt','datetime2','✔','Created date','تاريخ الإنشاء'],['UpdatedAt','datetime2','','Last update','آخر تعديل']]],
+['IncidentImages','صور البلاغ','Photos uploaded for an incident (one incident → many images).','صور البلاغ (بلاغ واحد ← صور كثيرة).',[
+['ImageId','int','PK, identity','Unique ID','الرقم'],['IncidentId','int','✔ FK → Incidents','The incident','البلاغ'],['FilePath','nvarchar(300)','✔','Saved file path','مسار الصورة'],['UploadedAt','datetime2','✔','Upload date','تاريخ الرفع']]],
+['ResponseTeams','فرق الإصلاح','Teams of each department (Road Maintenance, Electrical, Drainage...).','فرق الأقسام (صيانة الطرق، الكهرباء، الصرف...).',[
+['TeamId','int','PK, identity','Unique ID','الرقم'],['TeamName','nvarchar(100)','✔ unique','Team name','اسم الفريق'],['Department','nvarchar(100)','✔','Department','القسم'],['Description','nvarchar(300)','','Description','الوصف'],['IsAvailable','bit','✔ default 1','Available for new tasks','متاح أو لا']]],
+['TeamMembers','أعضاء الفرق','Junction table: users ↔ teams (many-to-many).','جدول ربط: المستخدمين والفرق (كثير إلى كثير).',[
+['TeamMemberId','int','PK, identity','Unique ID','الرقم'],['TeamId','int','✔ FK → ResponseTeams','The team','الفريق'],['UserId','nvarchar(450)','✔ FK → Users','The member','العضو']]],
+['IncidentAssignments','تعيين الفرق','Which team is assigned to which incident.','أي فريق انعطى أي بلاغ.',[
+['AssignmentId','int','PK, identity','Unique ID','الرقم'],['IncidentId','int','✔ FK → Incidents','The incident','البلاغ'],['TeamId','int','✔ FK → ResponseTeams','The team','الفريق'],['AssignedByUserId','nvarchar(450)','✔ FK → Users','Admin who assigned','المدير اللي عيّن'],['AssignedAt','datetime2','✔','Assignment date','تاريخ التعيين'],['AssignmentStatus','nvarchar(30)','✔','Assigned / Acknowledged / InProgress / Completed','حالة المهمة']]],
+['IncidentUpdates','تحديثات البلاغ','History of every progress update and status change.','سجل كل تحديث وتغيير حالة.',[
+['UpdateId','int','PK, identity','Unique ID','الرقم'],['IncidentId','int','✔ FK → Incidents','The incident','البلاغ'],['UpdatedByUserId','nvarchar(450)','✔ FK → Users','Who updated','مين حدّث'],['Description','nvarchar(1000)','✔','Update note','الملاحظة'],['Status','nvarchar(30)','✔','Status at that time','الحالة وقتها'],['CreatedAt','datetime2','✔','Date','التاريخ']]],
+['AIAnalyses','تحليل الذكاء الاصطناعي','AI suggestions for an incident (reviewed by the admin).','اقتراحات الذكاء الاصطناعي (المدير يراجعها).',[
+['AnalysisId','int','PK, identity','Unique ID','الرقم'],['IncidentId','int','✔ FK → Incidents','The incident','البلاغ'],['SuggestedCategory','nvarchar(100)','','AI category','النوع المقترح'],['SuggestedPriority','nvarchar(20)','','AI priority','الأهمية المقترحة'],['ConfidenceScore','decimal(5,2)','0–100','AI confidence (not guaranteed)','نسبة الثقة'],['Summary','nvarchar(500)','','Short summary','الملخص'],['DepartmentRecommendation','nvarchar(100)','','Suggested department','القسم المقترح'],['CreatedAt','datetime2','✔','Date','التاريخ']]],
+['Notifications','الإشعارات','Notifications sent to users (SignalR history).','إشعارات المستخدمين.',[
+['NotificationId','int','PK, identity','Unique ID','الرقم'],['UserId','nvarchar(450)','✔ FK → Users','Receiver','المستلم'],['Message','nvarchar(500)','✔','Text','النص'],['NotificationType','nvarchar(50)','✔','NewIncident / StatusChanged / Assignment','نوع الإشعار'],['IsRead','bit','✔ default 0','Read or not','مقروء أو لا'],['CreatedAt','datetime2','✔','Date','التاريخ']]],
+['AuditLogs','سجل العمليات','Record of important actions (who did what and when).','سجل العمليات المهمة (مين سوى شنو ومتى).',[
+['AuditId','int','PK, identity','Unique ID','الرقم'],['UserId','nvarchar(450)','FK → Users','Who did it','مين سواها'],['Action','nvarchar(100)','✔','e.g. IncidentApproved','العملية'],['EntityName','nvarchar(100)','✔','Table affected','الجدول'],['EntityId','nvarchar(50)','✔','Record ID','رقم السجل'],['CreatedAt','datetime2','✔','Date','التاريخ']]],
+['RefreshTokens','رموز تجديد الدخول','Secure refresh tokens for JWT login (stored as hashes).','رموز تجديد تسجيل الدخول (مشفرة).',[
+['RefreshTokenId','int','PK, identity','Unique ID','الرقم'],['UserId','nvarchar(450)','✔ FK → Users','Owner','صاحبه'],['TokenHash','nvarchar(200)','✔','Hashed token','الرمز مشفر'],['ExpiresAt','datetime2','✔','Expiry date','تاريخ الانتهاء'],['RevokedAt','datetime2','','Set on logout','تاريخ الإلغاء']]]];
+let h='';D.forEach((t,i)=>{h+=`<div class="blk"><h2><span>${i+1}. ${t[0]}</span><span class="ar">${t[1]}</span></h2><p class="d">${t[2]} <span style="direction:rtl;display:block;text-align:right">${t[3]}</span></p>
+<table><tr><th style="width:20%">Field</th><th style="width:15%">Type</th><th style="width:20%">Key / Rule</th><th>Description</th><th class="ar" style="width:18%">الشرح</th></tr>`;
+t[4].forEach(f=>{const c=f[2].startsWith('PK')?'k':(f[2].includes('FK')?'f':'');h+=`<tr><td class="${c}">${f[0]}</td><td>${f[1]}</td><td>${f[2]}</td><td>${f[3]}</td><td class="ar">${f[4]}</td></tr>`;});h+='</table></div>';});
+document.getElementById('out').innerHTML=h;
+</script>
+</body></html>

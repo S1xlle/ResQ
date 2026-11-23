@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>ResQ – ERD</title>
+<style>
+@page{size:A3 landscape;margin:6mm}
+body{margin:0;font-family:"Segoe UI",Tahoma,Arial,sans-serif;color:#1d2433}
+h1{text-align:center;font-size:18pt;margin:2px 0 0;color:#0f1b33}
+.sub{text-align:center;color:#b0213f;font-weight:600;font-size:10pt}
+svg{display:block;margin:0 auto;width:100%;height:auto}
+</style></head><body>
+<h1>ResQ – Entity Relationship Diagram (ERD) · Database: ResQDB</h1>
+<div class="sub">رسمة الجداول والعلاقات · PK = Primary Key (المفتاح الأساسي) · FK = Foreign Key (مفتاح الربط) · 1 ── ∞ = One-to-Many (واحد إلى كثير)</div>
+<svg id="d" viewBox="0 0 1660 1020" xmlns="http://www.w3.org/2000/svg"></svg>
+<script>
+const s=document.getElementById('d'),NS='http://www.w3.org/2000/svg';
+function el(t,a,txt,parent){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;(parent||s).appendChild(e);return e;}
+const W=250,H0=46,RH=18;
+const G={core:'#b0213f',lookup:'#4a90e2',user:'#2a9d6f',team:'#e09f3e',sys:'#7a5cd6'};
+const T={};
+function tbl(id,x,y,ar,col,fields){T[id]={id,x,y,ar,col,fields,h:H0+fields.length*RH+6};}
+tbl('Categories',20,30,'أنواع المشاكل',G.lookup,['PK CategoryId','CategoryName','Description','IsActive']);
+tbl('Priorities',20,190,'درجات الأهمية',G.lookup,['PK PriorityId','PriorityName','PriorityLevel']);
+tbl('IncidentStatuses',20,330,'حالات البلاغ',G.lookup,['PK StatusId','StatusName']);
+tbl('AIAnalyses',20,470,'تحليل الذكاء الاصطناعي',G.sys,['PK AnalysisId','FK IncidentId','SuggestedCategory','SuggestedPriority','ConfidenceScore','Summary','DepartmentRecommendation','CreatedAt']);
+tbl('IncidentImages',350,30,'صور البلاغ',G.core,['PK ImageId','FK IncidentId','FilePath','UploadedAt']);
+tbl('Incidents',350,250,'البلاغات (الجدول الرئيسي)',G.core,['PK IncidentId','ReferenceNumber','Title','Description','FK CategoryId','FK PriorityId','FK StatusId','FK ReportedByUserId','Latitude','Longitude','Address','CreatedAt','UpdatedAt']);
+tbl('IncidentUpdates',350,620,'تحديثات البلاغ',G.core,['PK UpdateId','FK IncidentId','FK UpdatedByUserId','Description','Status','CreatedAt']);
+tbl('IncidentAssignments',690,30,'تعيين الفرق',G.team,['PK AssignmentId','FK IncidentId','FK TeamId','FK AssignedByUserId','AssignedAt','AssignmentStatus']);
+tbl('ResponseTeams',690,240,'فرق الإصلاح',G.team,['PK TeamId','TeamName','Department','Description','IsAvailable']);
+tbl('TeamMembers',690,560,'أعضاء الفرق',G.team,['PK TeamMemberId','FK TeamId','FK UserId']);
+tbl('Users',1030,300,'المستخدمين (AspNetUsers)',G.user,['PK Id','FullName','Email','PhoneNumber','IsActive','CreatedAt']);
+tbl('UserRoles',1030,540,'ربط المستخدم بالدور',G.user,['FK UserId','FK RoleId']);
+tbl('Roles',1030,700,'الأدوار (AspNetRoles)',G.user,['PK RoleId','RoleName']);
+tbl('Notifications',1370,30,'الإشعارات',G.sys,['PK NotificationId','FK UserId','Message','NotificationType','IsRead','CreatedAt']);
+tbl('AuditLogs',1370,250,'سجل العمليات',G.sys,['PK AuditId','FK UserId','Action','EntityName','EntityId','CreatedAt']);
+tbl('RefreshTokens',1370,470,'رموز تجديد الدخول',G.sys,['PK RefreshTokenId','FK UserId','TokenHash','ExpiresAt','RevokedAt']);
+// relations: [child(many), parent(one), label]
+const R=[['Incidents','Categories'],['Incidents','Priorities'],['Incidents','IncidentStatuses'],['Incidents','Users'],
+['IncidentImages','Incidents'],['AIAnalyses','Incidents'],['IncidentUpdates','Incidents'],['IncidentUpdates','Users'],
+['IncidentAssignments','Incidents'],['IncidentAssignments','ResponseTeams'],['IncidentAssignments','Users'],
+['TeamMembers','ResponseTeams'],['TeamMembers','Users'],['UserRoles','Users'],['UserRoles','Roles'],
+['Notifications','Users'],['AuditLogs','Users'],['RefreshTokens','Users']];
+const lines=el('g',{});
+function anchor(t,o){ // point on edge of t facing o
+ const cx=t.x+W/2,cy=t.y+t.h/2,ox=o.x+W/2,oy=o.y+o.h/2,dx=ox-cx,dy=oy-cy;
+ if(Math.abs(dx)>W*0.8) return {x:dx>0?t.x+W:t.x,y:Math.max(t.y+20,Math.min(t.y+t.h-10,cy+dy*0.25)),side:dx>0?'r':'l'};
+ return {x:Math.max(t.x+30,Math.min(t.x+W-30,cx+dx*0.3)),y:dy>0?t.y+t.h:t.y,side:dy>0?'b':'t'};}
+const usedOff={};
+R.forEach(([c,p])=>{const A=T[c],B=T[p];let a=anchor(A,B),b=anchor(B,A);
+ const k=p+b.side;usedOff[k]=(usedOff[k]||0)+1;const off=(usedOff[k]-1)*14;
+ if(b.side=='l'||b.side=='r')b.y=Math.min(B.y+B.h-8,b.y+off-14);else b.x=Math.min(B.x+W-12,b.x+off-14);
+ if(c=='Incidents'&&p=='Users'){a={x:A.x+W,y:448};b={x:B.x,y:448};}
+ el('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:'#6b7389','stroke-width':1.4},null,lines);
+ const lab=(pt,o,txt,big)=>{const dx=o.x-pt.x,dy=o.y-pt.y,L=Math.hypot(dx,dy)||1;
+  el('text',{x:pt.x+dx/L*14,y:pt.y+dy/L*14+4,'text-anchor':'middle','font-size':big?15:12,'font-weight':800,fill:'#b0213f'},txt,lines);};
+ lab(a,b,'∞',1);lab(b,a,'1');});
+// draw tables
+Object.values(T).forEach(t=>{const g=el('g',{});
+ el('rect',{x:t.x,y:t.y,width:W,height:t.h,rx:8,fill:'#fff',stroke:t.col,'stroke-width':2},null,g);
+ el('rect',{x:t.x,y:t.y,width:W,height:40,rx:8,fill:t.col},null,g);
+ el('rect',{x:t.x,y:t.y+30,width:W,height:10,fill:t.col},null,g);
+ el('text',{x:t.x+10,y:t.y+18,'font-size':13.5,'font-weight':800,fill:'#fff'},t.id,g);
+ el('text',{x:t.x+W-10,y:t.y+34,'font-size':10.5,fill:'#fff','text-anchor':'start',direction:'rtl'},t.ar,g);
+ t.fields.forEach((f,i)=>{const y=t.y+H0+i*RH+8;const pk=f.startsWith('PK '),fk=f.startsWith('FK ');const name=f.replace(/^(PK|FK) /,'');
+  if(pk||fk)el('text',{x:t.x+8,y,'font-size':9.5,'font-weight':800,fill:pk?'#b0213f':'#2a6bc7'},pk?'PK':'FK',g);
+  el('text',{x:t.x+34,y,'font-size':11.5,'font-weight':pk?800:500,fill:'#1d2433','text-decoration':pk?'underline':''},name,g);});});
+// legend
+const lg=[['Core incident tables · جداول البلاغ',G.core],['Lookup tables · جداول القوائم',G.lookup],['Teams · الفرق',G.team],['Users & roles · المستخدمين',G.user],['AI, notifications, logs · الأنظمة',G.sys]];
+lg.forEach((l,i)=>{el('rect',{x:20+i*325,y:985,width:16,height:16,rx:3,fill:l[1]});el('text',{x:42+i*325,y:998,'font-size':12.5},l[0]);});
+el('text',{x:1370,y:720,'font-size':12,fill:'#555'},'Many-to-Many · كثير إلى كثير:');
+el('text',{x:1370,y:740,'font-size':11.5,fill:'#555'},'Users ↔ ResponseTeams (via TeamMembers)');
+el('text',{x:1370,y:758,'font-size':11.5,fill:'#555'},'Users ↔ Roles (via UserRoles)');
+</script>
+</body></html>

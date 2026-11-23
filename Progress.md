@@ -16,3 +16,20 @@
 
 **Next (Day 2):**
 - Use Case Diagram, ERD, and SQL Server database design.
+
+---
+
+## Day 2 – Use Case Diagram, ERD and Database Design
+**Date:** 23 Nov 2026
+
+**Completed:**
+- ✅ Created the Use Case Diagram (Citizen, Administrator, Response Team, AI Service, Email Service).
+- ✅ Created the ERD with 16 tables, primary keys, foreign keys and relationships.
+- ✅ Documented one-to-many relationships (e.g. User → Incidents) and many-to-many relationships (Users ↔ ResponseTeams via TeamMembers).
+- ✅ Designed the SQL Server database (ResQDB) with field names, data types and rules for every table.
+
+**Challenges:**
+- Understanding primary keys, foreign keys and the difference between one-to-many and many-to-many.
+
+**Next (Day 3):**
+- Create the ASP.NET Core solution, configure the project layers, and connect SQL Server with EF Core.
